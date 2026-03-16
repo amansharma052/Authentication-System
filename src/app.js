@@ -1,8 +1,15 @@
-const express= require('express')
+const express = require("express")
+const cookieParser = require("cookie-parser")
 
-const app =express()
+const authRoutes = require("./routes/auth.routes")
 
+const app = express()
 
+// middleware
 app.use(express.json())
+app.use(cookieParser())
 
-module.exports=app
+// routes
+app.use("/auth", authRoutes)
+
+module.exports = app
