@@ -1,15 +1,17 @@
-const express = require("express")
-const cookieParser = require("cookie-parser")
+import express from 'express';
+import morgan from 'morgan';
+import authRouter from './routes/auth.routes.js';
+import cookieParser from 'cookie-parser';
 
-const authRoutes = require("./routes/auth.routes")
+const app = express();
 
-const app = express()
 
-// middleware
-app.use(express.json())
-app.use(cookieParser())
+app.use(express.json());
+app.use(morgan("dev"));
+app.use(cookieParser());
 
-// routes
-app.use("/api/auth", authRoutes)
 
-module.exports = app
+app.use("/api/auth", authRouter);
+
+
+export default app;
